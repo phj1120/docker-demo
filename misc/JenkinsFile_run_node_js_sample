@@ -16,7 +16,7 @@ node {
      sh '''
      exists = docker ps -f name=node_js_sample -q
      
-     if [  -s ${exists} ] ; then
+     if [  -s {exists} ] ; then
         docker stop node_js_sample
         docker rm node_js_sample
      fi
