@@ -11,6 +11,7 @@ node {
    }
    
     stage('Deploy') {
+        sh 'docker stop node_js_sample'
         sh 'docker run -p 3000:3000 -v /var/jenkins_home:/var/jenkins_home -d --name node_js_sample node_js_sample'
     }
 
