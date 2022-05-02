@@ -6,9 +6,17 @@ node {
      commit_id = readFile('.git/commit-id').trim()
    }
    
+   
+   PID=`ps -eaf | grep syncapp | grep -v grep | awk '{print $2}'`
+if [[ "" !=  "$PID" ]]; then
+  echo "killing $PID"
+  kill -9 $PID
+fi
+   
    stage('Build') {
       sh '''
-         if [ -n "$docker ps -f name=node_js_sample -q" ] ; then
+         ID=`docker ps -f name=node_js_sample -q`
+         if [[ "" !=  "$ID" ]]; then
            docker stop node_js_sample
            docker rm node_js_sample
          fi
