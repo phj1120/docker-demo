@@ -9,6 +9,14 @@ node {
    stage('Build') {
        sh 'docker build --tag node_js_sample .'
    }
+   
+    stage('Deploy') {
+        sh 'docker ps -q --filter name=node_js_sample | grep -q . && docker stop node_js_sample && docker rm node_js_sample'
+      
+    }
 
+    stage('Finish') {
+        sh 'docker images -qf dangling=true | xargs -I{} docker rmi {}'
+    }
    
 }
