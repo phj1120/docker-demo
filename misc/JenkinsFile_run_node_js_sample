@@ -13,7 +13,7 @@ node {
    stage('Deploy') {
       
      sh '''
-     if [  - {docker ps -f name=node_js_sample -q} ] ; then
+     if [  -z {docker ps -f name=node_js_sample -q} ] ; then
         docker stop node_js_sample
         docker rm node_js_sample
      fi
