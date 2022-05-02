@@ -11,8 +11,7 @@ node {
    }
    
     stage('Deploy') {
-        sh 'docker ps -q --filter name=node_js_sample | grep -q . && docker stop node_js_sample && docker rm node_js_sample'
-      
+        sh 'docker run -p 8080:8080 -p 3000:3000 -v /var/jenkins_home:/var/jenkins_home -d --name node_js_sample'
     }
 
     stage('Finish') {
