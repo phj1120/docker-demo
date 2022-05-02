@@ -7,14 +7,14 @@ node {
    }
    
    stage('Build') {
-   sh '''
-      docker ps -f name=node_js_sample -q > exist
-      if [ -n "$exist" ] ; then
-        docker stop node_js_sample
-        docker rm node_js_sample
-      fi
-   '''
-   sh 'docker build --tag node_js_sample .'
+      sh '''
+         docker ps -f name=node_js_sample -q > exist
+         if [ -n "$docker ps -f name=node_js_sample -q" ] ; then
+           docker stop node_js_sample
+           docker rm node_js_sample
+         fi
+      '''
+      sh 'docker build --tag node_js_sample .'
    }
    
    stage('Deploy') {
