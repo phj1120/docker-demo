@@ -9,7 +9,7 @@ node {
    stage('Build') {
       sh '''
          ID=`docker ps -f name=node_js_sample -q`
-         if [[ "" !=  "$ID" ]]; then
+         if [ "" !=  "$ID" ]; then
            docker stop node_js_sample
            docker rm node_js_sample
          fi
