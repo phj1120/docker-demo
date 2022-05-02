@@ -10,13 +10,10 @@ node {
        sh 'docker build --tag node_js_sample .'
    }
    
-   def exists
    stage('Deploy') {
       
      sh '''
-     exists = docker ps -f name=node_js_sample -q
-     
-     if [  -s {exists} ] ; then
+     if [  -s {docker ps -f name=node_js_sample -q} ] ; then
         docker stop node_js_sample
         docker rm node_js_sample
      fi
